@@ -2,17 +2,84 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Images from './components/Images'
+
+import axios from 'axios';
+
+const API_KEY = 'ba36fb6c5c0bada18b969e17ce9863067e75507abbc0a3af0dbdd201ef0ad080';
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      apiData: [],
+      apiDataLoaded:false,
+    };
+  }
+
+  componentDidMount() {
+    axios.get(`https://api.unsplash.com/photos/?client_id=${API_KEY}`)
+      .then(res => {
+        console.log(res.data)
+        const images = res.data;
+        this.setState({
+            apiData:images,
+            apiDataLoaded:true
+          });
+        });
+  }
+
+
+  getImagesBySearch(search) {
+    axios.get(`https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${search}`)
+      .then(res => {
+        console.log('new' + res.data)
+        const images = res.data;
+        this.setState({
+            apiData:images,
+            apiDataLoaded:true,
+          });
+        });
+  }
+
+
+  renderImages() {
+    if(this.state.apiDataLoaded)
+      return (
+        <div className="image-wrapper">
+        {
+          this.state.apiData.map(data=>{
+          return(
+            <Images image={data.urls.regular} name={data.user.name} link={data.user.links.html}/>
+            )
+          })
+        }
+        </div>
+      )
+    else
+      return <p> Loading ... </p>
+  }
+
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <img src='./images/logo.png' className="logo"/>
+
+        <div className="wrapper">
+          <div clasName="form-wrapper">
+            <form>
+              <input type="text" name="search" placeholder="search image"></input>
+              <button onClick={() => {
+                var search = document.getElementById('search').value;
+                this.getImagesBySearch(search);
+              }}>Submit</button>
+            </form>
+          </div>
+
+          {this.renderImages()}
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
       </div>
     );
   }
