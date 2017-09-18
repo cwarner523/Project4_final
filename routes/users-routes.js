@@ -1,9 +1,10 @@
 const express = require('express');
 const authRouter = express.Router();
 const passport = require('../services/auth/local');
-const authHelpers = require('../services/auth/users-controller');
+const authHelpers = require('../services/auth/user-helpers');
+const usersController = require('../controllers/users-controller');
 
-auth Router.post('/register', usersController.create);
+authRouter.post('/register', usersController.create);
 
 authRouter.post('/login', passport.authenticate('local', {
     successRedirect: '/auth/success',

@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
-    key:process.env.SECRET_KEY,
+    key: process.env.SECRET_KEY,
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
@@ -29,13 +29,13 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
-};
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index'));
 });
 
-const authRoutes = require('./routes/auth-routes');
+const authRoutes = require('./routes/users-routes');
 app.use('/auth', authRoutes);
 
 app.use('*', (req, res) => {

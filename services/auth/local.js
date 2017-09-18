@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const init = require('./passport');
 const User = require('../../models/user');
-const authHelpers = require('./auth-helpers');
+const authHelpers = require('./user-helpers');
 
 const options = {};
 
