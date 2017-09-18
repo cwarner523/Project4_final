@@ -9,7 +9,7 @@ usersController.create = (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password_difest: hash,
+    password_digest: hash,
     display_name: req.body.display_name,
   }).then(user => {
     if (err) return next(err);

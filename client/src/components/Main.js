@@ -14,7 +14,6 @@ class Main extends Component {
     }
   }
 
-
     componentDidMount() {
       axios.get(`https://api.unsplash.com/photos/?client_id=${API_KEY}`)
         .then(res => {
@@ -62,7 +61,19 @@ class Main extends Component {
   render() {
     return(
       <div>
+      <div className="wrapper">
+        <div className="form-wrapper">
+          <form>
+            <input type="text" name="search" placeholder="search image"></input>
+            <button onClick={() => {
+              var search = document.getElementById('search').value;
+              this.getImagesBySearch(search);
+            }}>Submit</button>
+          </form>
+        </div>
+
         {this.renderImages()}
+      </div>
       </div>
     )
   }

@@ -23,6 +23,11 @@
   to { transform: rotate(360deg); }
 }
 
+nav li{
+  list-style-type: none;
+}
+
+
 .wrapper {
   width:90%;
   margin: 0 auto;
@@ -58,7 +63,7 @@
   background:black;
 }
 
-input[type=text]{
+.form-wrapper input[type=text]{
   border: 0px;
   border-bottom: 1px solid black;
   margin-bottom:50px;
