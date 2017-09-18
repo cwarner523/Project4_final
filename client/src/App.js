@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Main from './components/Main'
+import Login from './components/Login';
+import Register from './components/Register';
 import Images from './components/Images'
 
 import axios from 'axios';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 
 const API_KEY = 'ba36fb6c5c0bada18b969e17ce9863067e75507abbc0a3af0dbdd201ef0ad080';
 
@@ -14,57 +23,73 @@ class App extends Component {
     this.state = {
       apiData: [],
       apiDataLoaded:false,
+      auth: false,
+      user: null,
+      currentPage: 'main',
     };
+    this.setPage = this.setPage.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
   }
 
-  componentDidMount() {
-    axios.get(`https://api.unsplash.com/photos/?client_id=${API_KEY}`)
-      .then(res => {
-        console.log(res.data)
-        const images = res.data;
-        this.setState({
-            apiData:images,
-            apiDataLoaded:true
-          });
-        });
+  setPage(page) {
+    this.setState({
+      currentPage: page,
+    })
   }
 
-
-  getImagesBySearch(search) {
-    axios.get(`https://api.unsplash.com/search/photos/?client_id=${API_KEY}&query=${search}`)
-      .then(res => {
-        console.log('new' + res.data)
-        const images = res.data;
-        this.setState({
-            apiData:images,
-            apiDataLoaded:true,
-          });
-        });
+  decideWhichPage() {
+    switch(this.state.currentPage) {
+      case 'main':
+        return <Main />;
+        break;
+      case 'login':
+        return <Login handleLoginSubmit={this.handleLoginSubmit} />;
+        break;
+      case 'register':
+        return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
+        break;
+      default:
+        break;
+    }
   }
 
+  handleLoginSubmit(e, username, password) {
+    e.preventDefault();
+    axios.post('/auth/login', {
+      username,
+      password,
+    }).then(res => {
+    this.setState({
+      auth: res.data.auth,
+      user: res.data.user,
+    });
+    }).catch(err=> console.log(err));
+  }
 
-  renderImages() {
-    if(this.state.apiDataLoaded)
-      return (
-        <div className="image-wrapper">
-        {
-          this.state.apiData.map(data=>{
-          return(
-            <Images image={data.urls.regular} name={data.user.name} link={data.user.links.html}/>
-            )
-          })
-        }
-        </div>
-      )
-    else
-      return <p> Loading ... </p>
+  handleRegisterSubmit(e, username, password, email, display_name) {
+    e.preventDefault();
+    axios.post('/auth/register', {
+      username,
+      password,
+      email,
+      display_name,
+    }).then (res => {
+      this.setState({
+        auth: res.data.auth,
+        user: res.data.user,
+      });
+    }).catch(err => console.log(err));
   }
 
 
   render() {
     return (
+      <Router>
       <div className="App">
         <img src='./images/logo.png' className="logo"/>
+           <Route exact path = '/register' render = {() => <Register handleRegisterSubmit = {this.handleRegisterSubmit} />} />
+            <Route exact path = '/login' render = {() => <Login handleLoginSubmit = {this.handleLoginSubmit} />} />
 
         <div className="wrapper">
           <div clasName="form-wrapper">
@@ -77,10 +102,11 @@ class App extends Component {
             </form>
           </div>
 
-          {this.renderImages()}
+          {this.decideWhichPage()}
         </div>
 
       </div>
+      </Router>
     );
   }
 }
