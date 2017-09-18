@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index'));
 });
 
-const authRoutes = require('./routes/users-routes');
+const authRoutes = require('./routes/auth-routes');
 app.use('/auth', authRoutes);
 
 app.use('*', (req, res) => {
