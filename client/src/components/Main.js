@@ -15,7 +15,6 @@ class Main extends Component {
       apiDataLoaded:false,
       search:'',
       searchDataLoaded: false,
-      searchData: [],
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
@@ -28,7 +27,7 @@ class Main extends Component {
       console.log(res.data + "dhfjdshfdks");
       console.log(this.state.searchData);
       this.setState({
-        searchData:res.data,
+        apiData:res.data.results,
         searchDataLoaded:true
       })
     })

@@ -29,16 +29,19 @@ class App extends Component {
       user: null,
       currentPage: 'main',
       moodboardData: null,
-      currentMoodboardId: null,
+      userId: null,
     };
     this.setPage = this.setPage.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+    this.handleMoodboardSubmit = this.handleMoodboardSubmit.bind(this);
+    this.resetMoodboard = this.resetMoodboard.bind(this);
+    this.getInfo = this.getInfo.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('/moodboard')
+   getInfo() {
+    axios.get(`/moodboard/user/${this.state.user.id}`)
     .then(res => {
       this.setState({
         moodboardData: res.data.data,
@@ -64,7 +67,7 @@ class App extends Component {
         return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
         break;
       case 'profile':
-        return <UsersProfile moodboardData={this.state.moodboardData} />;
+        return <UsersProfile moodboardData={this.state.moodboardData} handleMoodboardSubmit={this.handleMoodboardSubmit} />;
         break;
       default:
         break;
@@ -77,11 +80,13 @@ class App extends Component {
       username,
       password,
     }).then(res => {
-    this.setState({
-      auth: res.data.auth,
-      user: res.data.user,
-      currentPage: 'login',
-    });
+      this.setState({
+        auth: res.data.auth,
+        user: res.data.user,
+        currentPage: 'login',
+      })
+    }).then(()=>{
+      this.getInfo()
     }).catch(err=> console.log(err));
   }
 
@@ -111,16 +116,21 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
-  handleMoodboardSubmit(e, name, description) {
+  handleMoodboardSubmit(e) {
+    console.log(e);
     e.preventDefault();
-    axios.post('/moodboard', {
-      name,
-      description,
+    console.log(e.target.name);
+    axios('/moodboard', {
+      method: 'POST',
+      data: {
+        name: e.target.name.value,
+        description: e.target.desc.value,
+      }
     }).then(res => {
       this.setState({
         currentPage: 'profile',
       }, () => console.log(this.state.currentPage))
-      this.resetMoodBoard();
+      this.resetMoodboard();
     }).catch(err => console.log(err));
   }
 

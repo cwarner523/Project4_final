@@ -39,6 +39,11 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/auth-routes');
 app.use('/auth', authRoutes);
 
+app.use((req, res, next) => {
+  console.log(req.body);
+  next();
+})
+
 const moodboardRoutes = require('./routes/moodboard-routes');
 app.use('/moodboard', moodboardRoutes);
 

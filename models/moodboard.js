@@ -13,6 +13,14 @@ Moodboard.findById = (id) => {
     `, [id]);
 }
 
+Moodboard.findByUser = (userId) => {
+  return db.query(`
+    SELECT * FROM mood_board
+    WHERE user_id = $1
+    `, [userId]);
+}
+
+
 Moodboard.create = (moodboard, userId) => {
   return db.one(`
     INSERT INTO mood_board

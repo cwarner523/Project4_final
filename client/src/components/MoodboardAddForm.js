@@ -5,7 +5,7 @@ class MoodboardAddForm extends Component {
     super();
     this.state = {
       name: '',
-      description: '',
+      desc: '',
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -21,12 +21,12 @@ class MoodboardAddForm extends Component {
   render() {
     return (
       <div className="form-wrapper">
-        <form onSubmit={(e) => this.props.handleMoodboardSubmit(e, this.state.title, this.state.description)}>
+        <form onSubmit={(e) => this.props.handleMoodboardSubmit(e)}>
           <label> Name
             <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} />
           </label>
           <label> Description
-            <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} />
+            <input type="text" name="desc" placeholder="Description" value={this.state.desc} onChange={this.handleInputChange} />
           </label>
           <input type="submit" value="Add Mood Board" />
         </form>

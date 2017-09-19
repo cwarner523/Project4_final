@@ -28,6 +28,19 @@ moodboardController.show = (req, res) => {
   });
 };
 
+moodboardController.user = (req, res) => {
+  Moodboard.findByUser(req.params.userId)
+  .then(moodboard => {
+    res.json({
+      message: 'ok',
+      data: moodboard,
+    });
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+};
+
 moodboardController.create = (req, res) => {
   Moodboard.create({
     name: req.body.name,
