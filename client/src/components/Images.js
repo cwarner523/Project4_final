@@ -7,8 +7,9 @@ class Images extends Component {
           <div className="image-indiv">
             <img src={this.props.image}></img>
             <div className="image-descrip">
-              <p>Photo By {this.props.name} | Unsplash</p>
-              <a href={this.props.link}>{this.props.link}</a>
+              <p>Photo By <b>{this.props.name}</b> | Unsplash</p>
+              <p><a href={this.props.link}>{this.props.link}</a></p>
+              <button>Add image to board</button>
             </div>
           </div>
       </div>

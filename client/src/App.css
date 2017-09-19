@@ -23,28 +23,56 @@
   to { transform: rotate(360deg); }
 }
 
-nav li{
+header li{
   list-style-type: none;
 }
 
+header img {
+  width:300px;
+}
+
+nav {
+  margin-top:-50px;
+  margin-bottom:100px;
+  margin-left:-25px;
+}
+
+nav li{
+  display:inline;
+  padding:15px;
+  margin: 0px 10px;
+}
+
+nav li:hover {
+  color:#dedede;
+  margin-top:20px;
+  transition: 0.3s;
+  font-size:16px;
+  cursor: pointer;
+}
+
+.logo {
+  margin:0 auto;
+}
 
 .wrapper {
-  width:90%;
+  width:95%;
   margin: 0 auto;
   display: flex;
   margin-top:40px;
 }
 
 .form-wrapper {
-  width:30%;
+  width:20%;
 }
 
 .image-wrapper {
-  width:55%;
+  width:75%;
   display:flex;
   flex-direction: row;
-  padding:10px;
+  padding:5px;
   flex-wrap: wrap;
+  margin-left:40px;
 }
 
 .image-section {
@@ -66,16 +94,45 @@ nav li{
 .form-wrapper input[type=text]{
   border: 0px;
   border-bottom: 1px solid black;
-  margin-bottom:50px;
-  width:250px;
+  width:200px;
   padding:20px;
   color: #c1bfbf;
   font-size:14px;
 }
 
-form {
-  width:430px;
-  margin-right:50px;
+.form-wrapper button {
+  padding: 10px;
+  border: 1px solid black;
+  background:black;
+  border-radius:10%;
+  color:white;
+  font-size:14px;
+  margin-top:25px;
+}
+
+.form-wrapper button:hover {
+  border:1px solid black;
+  background:white;
+  color:black;
+  transition: 0.5s;
+}
+
+.image-indiv button {
+  padding: 5px 10px;
+  border: 1px solid black;
+  background:black;
+  border-radius:8%;
+  color:white;
+  font-size:12px;
+  margin-top:10px;
+  margin-bottom: 20px;
+}
+
+.image-indiv button:hover {
+  border:1px solid black;
+  background:white;
+  color:black;
+  transition: 0.5s;
 }
 
 .image-descrip p {
@@ -83,11 +140,46 @@ form {
   text-decoration: none;
   color:black;
   margin-top:-1px;
-  margin-bottom:-2px;
+  margin-bottom:-1px;
 }
 
 .image-descrip a{
   font-size:12px;
   color: #c1bfbf;
   text-decoration: none;
+}
+
+.login {
+  width:36%;
+  margin: 0 auto;
+}
+
+.login input[type=text],
+.login input[type=password],
+.login input[type=email] {
+  border:2px solid white;
+  border-bottom:.5px solid black;
+  width:500px;
+  padding:15px;
+  margin-bottom:50px;
+  text-align: center;
+  font-size:14px;
+}
+
+.login input[type=submit]{
+  padding: 10px;
+  border: 2px solid black;
+  background:black;
+  border-radius:10%;
+  color:white;
+  font-size:14px;
+  margin-top:25px;
+  margin-bottom:50px;
+}
+
+.login input[type=submit]:hover {
+  border:1px solid black;
+  background:white;
+  color:black;
+  transition: 0.5s;
 }
