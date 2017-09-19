@@ -6,6 +6,8 @@ import axios from 'axios';
 import Header from './components/Header';
 import Main from './components/Main';
 import Images from './components/Images';
+import UsersProfile from './components/UsersProfile';
+
 
 import Login from './components/Login';
 import Register from './components/Register';
@@ -26,10 +28,22 @@ class App extends Component {
       auth: false,
       user: null,
       currentPage: 'main',
+      moodboardData: null,
+      currentMoodboardId: null,
     };
     this.setPage = this.setPage.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+    this.logOut = this.logOut.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/moodboard')
+    .then(res => {
+      this.setState({
+        moodboardData: res.data.data,
+      });
+    }).catch(err => console.log(err));
   }
 
   setPage(page) {
@@ -48,6 +62,9 @@ class App extends Component {
         break;
       case 'register':
         return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
+        break;
+      case 'profile':
+        return <UsersProfile moodboardData={this.state.moodboardData} />;
         break;
       default:
         break;
@@ -84,13 +101,51 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
+  logOut() {
+    axios.get('/auth/logout')
+    .then(res => {
+      this.setState({
+        auth:false,
+        currentPage: 'main',
+      })
+    }).catch(err => console.log(err));
+  }
+
+  handleMoodboardSubmit(e, name, description) {
+    e.preventDefault();
+    axios.post('/moodboard', {
+      name,
+      description,
+    }).then(res => {
+      this.setState({
+        currentPage: 'profile',
+      }, () => console.log(this.state.currentPage))
+      this.resetMoodBoard();
+    }).catch(err => console.log(err));
+  }
+
+  selectEditedMoodboard(id) {
+    this.setState({
+      currentMoodboardId: id,
+    })
+  }
+
+  resetMoodboard() {
+    axios.get('/moodboard')
+    .then(res => {
+      this.setState({
+        moodboardData: res.data.data,
+      })
+    })
+  }
+
 
   render() {
     return (
       <Router>
         <div className="App">
-          <Header setPage={this.setPage} />
-          {this.decideWhichPage()}
+          <Header setPage={this.setPage} logOut={this.logOut} />
+            {this.decideWhichPage()}
         </div>
       </Router>
     );
