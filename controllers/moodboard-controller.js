@@ -6,7 +6,7 @@ moodboardController.index = (req, res) => {
   Moodboard.findAll()
   .then(moodboards => {
     res.json({
-      message: 'ok',
+      message: 'okkk',
       data: moodboards,
     });
   }).catch(err => {
@@ -19,7 +19,7 @@ moodboardController.show = (req, res) => {
   Moodboard.findById(req.params.id)
   .then(moodboard => {
     res.json({
-      message: 'ok',
+      message: 'okkkk1',
       data: moodboard,
     });
   }).catch(err => {
