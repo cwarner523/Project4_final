@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class Images extends Component {
+//
+handleImageSave(){
+  console.log('yep')
+  console.log(this.props,'<------')
+}
+
   render() {
     return (
       <div className="image-section">
@@ -9,7 +15,7 @@ class Images extends Component {
             <div className="image-descrip">
               <p>Photo By <b>{this.props.name}</b> | Unsplash</p>
               <p><a href={this.props.link}>{this.props.link}</a></p>
-              <button>Add image to board</button>
+              <button onClick={() => this.handleImageSave()}>Add image to board</button>
             </div>
           </div>
       </div>

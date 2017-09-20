@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Images from './components/Images';
 import UsersProfile from './components/UsersProfile';
-
+import MoodboardSingle from './components/MoodboardSingle';
 
 import Login from './components/Login';
 import Register from './components/Register';
@@ -48,7 +48,16 @@ class App extends Component {
       });
     }).catch(err => console.log(err));
   }
-
+/*
+  getInfoById() {
+   axios.get(`/moodboard/user/${this.state.user.id}/`)
+   .then(res => {
+     this.setState({
+       moodboardData: res.data.data,
+     });
+   }).catch(err => console.log(err));
+ }
+*/
   setPage(page) {
     this.setState({
       currentPage: page,
@@ -58,7 +67,7 @@ class App extends Component {
   decideWhichPage() {
     switch(this.state.currentPage) {
       case 'main':
-        return <Main />;
+        return <Main moodboardData={this.state.moodboardData} />;
         break;
       case 'login':
         return <Login handleLoginSubmit={this.handleLoginSubmit} />;
@@ -69,6 +78,8 @@ class App extends Component {
       case 'profile':
         return <UsersProfile moodboardData={this.state.moodboardData} handleMoodboardSubmit={this.handleMoodboardSubmit} />;
         break;
+      case 'moodboards':
+        return <MoodboardSingle moodboardData={this.state.moodboardData} setPage={this.setPage}/>
       default:
         break;
     }

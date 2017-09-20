@@ -15,9 +15,12 @@ class Main extends Component {
       apiDataLoaded:false,
       search:'',
       searchDataLoaded: false,
+      moodboardData: null
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
+    this.handleImageSave = this.handleImageSave.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSearch(e) {
@@ -46,9 +49,22 @@ class Main extends Component {
       const images = res.data;
         this.setState({
           apiData:images,
-          apiDataLoaded:true
+          apiDataLoaded:true,
+          moodboardData: images.id
         });
+        console.log('----->',this.state)
       });
+    }
+
+    handleImageSave(url) {
+      axios.post(`/images/${this.state.moodboardData.id}`, {
+        data: {
+          image_url: url
+        }
+    })
+    }
+    handleClick(){
+      console.log(this.state)
     }
 
 
@@ -59,7 +75,7 @@ class Main extends Component {
           {
             this.state.apiData.map(data=>{
             return(
-              <Images image={data.urls.regular} name={data.user.name} link={data.user.links.html}/>
+              <Images image={data.urls.regular} name={data.user.name} link={data.user.links.html} id={data.id}/>
               )
             })
           }
