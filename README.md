@@ -1,6 +1,6 @@
 ## Project 4 - Mood Generator
 
-// screenshot
+<img src= "client/public/images/wireframes.png">
 
 ### Technologies Used
 For this project the backend was generated in express, and the front end was created using React.
@@ -14,6 +14,9 @@ Once the back end was creating I worked more in react to get the moldboards rend
 ### User Stories
 
 ### Wire Frames
+<img src= "client/public/images/wireframes1.png">
+<img src= "client/public/images/wireframes2.png">
+<img src= "client/public/images/wireframes3.png">
 
 ### Unsolved Problems and Hurdles
 Since I changed my project pretty late I had a lot of trouble finishing this on time. My back end is functioning but I had a lot of problems with the different states in react. When it came to saving an image to a moodboard, I did not have the right state of the both the user id and the moodboard id to save the image to the specific user or moodboard. Also I should have started using exact paths, because a lot of my routes aren’t fully functioning and rendering the correct component on the setPage state.
