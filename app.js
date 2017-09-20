@@ -47,6 +47,9 @@ app.use((req, res, next) => {
 const moodboardRoutes = require('./routes/moodboard-routes');
 app.use('/moodboard', moodboardRoutes);
 
+const imagesRoutes = require('./routes/image-routes');
+app.use('/images', imagesRoutes);
+
 app.use('*', (req, res) => {
   res.status(400).json({
     message:'Not Found!',

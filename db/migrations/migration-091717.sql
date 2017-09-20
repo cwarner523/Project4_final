@@ -1,4 +1,8 @@
 \c mood_dev
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS mood_board;
+DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS typeface;
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
@@ -17,6 +21,7 @@ CREATE TABLE IF NOT EXISTS mood_board (
 
 CREATE TABLE IF NOT EXISTS images (
   id SERIAL PRIMARY KEY,
+  image_url VARCHAR(255),
   moodboard_id INTEGER REFERENCES mood_board(id)
 );
 
