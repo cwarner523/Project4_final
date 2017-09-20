@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import Moodboard from './Moodboard';
@@ -15,3 +16,41 @@ const UsersProfile = (props) => {
 }
 
 export default UsersProfile;
+
+/*
+import React, { Component } from 'react';
+
+import axios from 'axios';
+
+import Moodboard from './Moodboard';
+
+class UsersProfile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      moodboardDataLoaded: false,
+      moodboardData: null
+    }
+  }
+
+  componentDidMount() {
+    axios.get(`/moodboard/${this.state.moodboardData.id}`)
+    .then(res => {
+      this.setState({
+        moodboardDataLoaded: true,
+        moodboardData: res.data.data,
+      })
+    })
+  }
+
+  renderMoodboard() {
+    if (this.state.moodboardDataLoaded) {
+      return this.state.moodboardData.map(moodboard => {
+        return (
+          <MoodboardSingle />
+        )
+      })
+    }
+  }
+}
+*/

@@ -23,10 +23,10 @@ class MoodboardAddForm extends Component {
       <div className="form-wrapper">
         <form onSubmit={(e) => this.props.handleMoodboardSubmit(e)}>
           <label> Name
-            <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} />
+            <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
           </label>
           <label> Description
-            <input type="text" name="desc" placeholder="Description" value={this.state.desc} onChange={this.handleInputChange} />
+            <input type="text" name="desc" value={this.state.desc} onChange={this.handleInputChange} />
           </label>
           <input type="submit" value="Add Mood Board" />
         </form>
