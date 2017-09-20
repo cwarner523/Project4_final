@@ -98,20 +98,27 @@ nav li:hover {
   padding:20px;
   color: #c1bfbf;
   font-size:14px;
+  margin-bottom:30px;
 }
 
-
-.form-wrapper button {
+.form-wrapper button, input[type="submit"] {
   padding: 10px;
   border: 1px solid black;
   background:black;
   border-radius:10%;
   color:white;
   font-size:14px;
-  margin-top:25px;
+  margin-top:5px;
 }
 
 .form-wrapper button:hover {
+  border:1px solid black;
+  background:white;
+  color:black;
+  transition: 0.5s;
+}
+
+.form-wrapper input[type="submit"]:hover {
   border:1px solid black;
   background:white;
   color:black;
@@ -183,4 +190,37 @@ nav li:hover {
   background:white;
   color:black;
   transition: 0.5s;
+}
+
+.moodboard-wrapper {
+  width:20%;
+  background:rgba(0,0,0,0.07);
+  margin:10px;
+  padding:40px;
+  margin-left:60px;
+  border-radius: 10%;
+}
+
+.moodboard-indiv h1 {
+  font-size: 28px;
+  margin-bottom:-15px;
+}
+
+.moodboard-indiv p {
+  color:#6B6D70;
+}
+
+.moodboard-indiv a {
+  background:black;
+  color:white;
+  text-decoration: none;
+  padding:5px 8px;
+  font-size:14px;
+}
+
+.moodboard-indiv a:hover {
+  background:rgba(0,0,0,0);
+  color:black;
+  border:1px solid black;
+  transition:0.2s;
 }
