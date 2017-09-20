@@ -20,7 +20,7 @@ class MoodboardSingle extends Component {
     .then(res => {
       console.log(this.moodboard.id);
       this.setState({
-        apidDataLoaded: true,
+        apiDataLoaded: true,
         moodboard: res.data.data,
       })
     }).catch(err => console.log(err));

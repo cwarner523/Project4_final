@@ -9,7 +9,7 @@ const UsersProfile = (props) => {
     <div className="wrapper">
       <MoodboardAddForm handleMoodboardSubmit={props.handleMoodboardSubmit} />
       {props.moodboardData.map(moodboard => {
-        return <Moodboard moodboard={moodboard} key={moodboard.id} />
+        return <Moodboard moodboard={moodboard} key={moodboard.id} deleteMoodboard={props.deleteMoodboard}/>
       })}
     </div>
   )

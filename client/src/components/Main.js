@@ -93,6 +93,7 @@ class Main extends Component {
       <div className="wrapper">
       <SearchBar handleSearch={this.handleSearch} inputSearch={this.inputSearch}/>
         {this.renderImages()}
+        <p>{this.props.moodboardData}</p>
       </div>
       </div>
     )

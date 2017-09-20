@@ -36,6 +36,7 @@ class App extends Component {
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleMoodboardSubmit = this.handleMoodboardSubmit.bind(this);
     this.resetMoodboard = this.resetMoodboard.bind(this);
+    this.deleteMoodboard = this.deleteMoodboard.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.logOut = this.logOut.bind(this);
   }
@@ -76,7 +77,7 @@ class App extends Component {
         return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
         break;
       case 'profile':
-        return <UsersProfile moodboardData={this.state.moodboardData} handleMoodboardSubmit={this.handleMoodboardSubmit} />;
+        return <UsersProfile moodboardData={this.state.moodboardData} handleMoodboardSubmit={this.handleMoodboardSubmit} deleteMoodboard={this.deleteMoodboard} />;
         break;
       case 'moodboards':
         return <MoodboardSingle moodboardData={this.state.moodboardData} setPage={this.setPage}/>
@@ -149,6 +150,15 @@ class App extends Component {
     this.setState({
       currentMoodboardId: id,
     })
+  }
+
+  deleteMoodboard() {
+    axios.delete(`/moodboard/${this.res.data.data.id}`)
+    .then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   resetMoodboard() {
