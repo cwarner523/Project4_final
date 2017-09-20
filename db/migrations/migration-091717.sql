@@ -1,4 +1,4 @@
-\c mood_dev
+
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS mood_board;
 DROP TABLE IF EXISTS images;
