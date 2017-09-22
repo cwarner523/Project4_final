@@ -12,6 +12,7 @@ When it first came to creating this app I started to use Ruby, however I changed
 Once the back end was creating I worked more in react to get the moldboards rendering, and working to only show specific moodboards based on if the user was logged in or not, or if they create that specific moodboard.
 
 ### User Stories
+Once the user opens the page the images will load from the unsplash api that has been generated from the top images of the day. The user can filter through the api to search for an image they want to find from the search bar. The user can then sign in, and create a new moodboard to their account. The user is only able to view their moodboards only. The user can then go back to the images page and save the images to a specific moodboard that they have created. The user can then view that moodboard and see all the saved images.
 
 ### Wire Frames
 <img src= "client/public/images/wireframes1.png">
